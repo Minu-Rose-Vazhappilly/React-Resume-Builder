@@ -12,6 +12,7 @@ import TextField from '@mui/material/TextField';
 const steps = ['Basic Information', 'Contact Details', 'Education Details','Work EXperience','Skills & Certifications','Review & Submit'];
 
 function Steps() {
+  const skillSuggestionArray = ['NODE JS','EXPRESS','MONGODB','REACT','ANGULAR','NEXT JS','BOOTSTRAP','TAILWIND','CSS','GIT']
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
 
@@ -117,12 +118,23 @@ function Steps() {
       case 4: return(
         <div>
           <h3>Skills</h3>
-          <div className="d-flex row p-3">
-            <TextField id="standard-basic-name" label="Full Name" variant="standard"/>
-            <TextField id="standard-basic-title" label="Job Title" variant="standard"/>
-            <TextField id="standard-basic-Location" label="Location" variant="standard"/>
-             <TextField id="standard-basic-duration" label="Duration" variant="standard"/>
+          <div className="d-flex align-items-center justify-content-between p-3">
+            <TextField sx={{width:"400px"}} id="standard-basic-name " label="Add skill" variant="standard"/>
+            <Button variant="text">ADD</Button>
           </div>
+          <h5>Suggestions:</h5>
+        <div className="d-flex flex-wrap justify-content-between my-3">
+          {
+            skillSuggestionArray.map(userSkill=>(
+              <Button className='m-1' key={userSkill} variant="outlined">{userSkill}</Button>
+            ))
+          }
+        </div>
+        <h5>Added Skills</h5>
+        <div className="d-flex flex-wrap justify-content-between my-3">
+          {/* span must be duplicated according to the user added skill */}
+          <span className='btn btn-primary d-flex align-items-center justify-content-center'>REACT <button className='text-light btn'>X</button></span>
+        </div>
         </div>
       )
       case 5: return(

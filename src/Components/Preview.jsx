@@ -5,14 +5,32 @@ import { Link } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { FaFileDownload } from "react-icons/fa";
+import { FaHistory } from "react-icons/fa";
+import Edit from './Edit';
+
 
 
 
 function Preview() {
   return (
-    <div style={{marginTop:'100px'}}><Box component="section">
+    <div >
+      <Stack direction={'row'} sx={{marginTop:'20px',justifyContent:'flex-end'}}>
+        <Stack direction={'row'} sx={{alignItems:'center'}}>
+          {/* Download */}
+          <button className='btn fs-1 text-primary' ><FaFileDownload /></button>
+          {/* edit */}
+          <div>
+            <Edit/>
+          </div>
+          {/* history */}
+          <Link to={'/history'}><button className='btn fs-1 text-primary' ><FaHistory /></button></Link>
+          <Link to={'/resume'}><button className='btn fs-1 text-primary' >BACK</button></Link>
+        </Stack>
+      </Stack>
+      <Box component="section">
       
-      <Paper sx={{ p: 2,textAlign:'center'}}>
+      <Paper sx={{ my:5,p:5,textAlign:'center'}}>
         <h2>Name</h2>
         <h4>Job Title</h4>
         <p><span>Location</span> | <span>Email</span> | <span>Phone</span></p>
