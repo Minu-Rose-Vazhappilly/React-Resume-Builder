@@ -15,6 +15,37 @@ function Steps() {
   const skillSuggestionArray = ['NODE JS','EXPRESS','MONGODB','REACT','ANGULAR','NEXT JS','BOOTSTRAP','TAILWIND','CSS','GIT']
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  //state for storing user input data
+  const [userInput,setUserInput] = React.useState({
+    personelData:{
+      name:'',
+      jobTitle:'',
+      location:'',
+      email:'',
+      phone:'',
+      github:'',
+      linkedin:'',
+      portfolio:''
+    },
+    education:{
+      course:'',
+      college:'',
+      university:'',
+      year:''
+    },
+    experience:{
+      jobRole:'',
+      company:'',
+      jobLocation:'',
+      duration:''
+    },
+    skills:[],
+    summary:''
+
+  });
+
+  console.log(userInput);
+  
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -65,9 +96,9 @@ function Steps() {
         <div>
           <h3>Personal Details</h3>
           <div className="d-flex row p-3">
-            <TextField id="standard-basic-name" label="Full Name" variant="standard"/>
-            <TextField id="standard-basic-title" label="Job Title" variant="standard"/>
-            <TextField id="standard-basic-Location" label="Location" variant="standard"/>
+            <TextField id="standard-basic-name" label="Full Name" variant="standard"  onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,name:e.target.value}})}/>
+            <TextField id="standard-basic-title" label="Job Title" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,jobTitle:e.target.value}})}/>
+            <TextField id="standard-basic-Location" label="Location" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,location:e.target.value}})}/>
           </div>
         </div>
       )
@@ -75,7 +106,7 @@ function Steps() {
         <div>
           <h3>Personal Details</h3>
           <div className="d-flex row p-3">
-            <TextField id="standard-basic-name" label="Full Name" variant="standard"/>
+            <TextField id="standard-basic-name" label="Full Name" variant="standard" />
             <TextField id="standard-basic-title" label="Job Title" variant="standard"/>
             <TextField id="standard-basic-Location" label="Location" variant="standard"/>
           </div>
@@ -85,9 +116,9 @@ function Steps() {
         <div>
           <h3>Contact Details</h3>
           <div className="d-flex row p-3">
-            <TextField id="standard-basic-mail" label=" Email" variant="standard"/>
-            <TextField id="standard-basic-phone" label="Phone Number" variant="standard"/>
-            <TextField id="standard-basic-github" label="GitHub Profile Link" variant="standard"/>
+            <TextField id="standard-basic-mail" label=" Email" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,email:e.target.value}})}/>
+            <TextField id="standard-basic-phone" label="Phone Number" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,phone:e.target.value}})}/>
+            <TextField id="standard-basic-github" label="GitHub Profile Link" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,github:e.target.value}})}/>
              <TextField id="standard-basic-linkedin" label="Linkedin Profile Link" variant="standard"/>
               <TextField id="standard-basic-portfolio" label="Portfolio Link" variant="standard"/>
           </div>
