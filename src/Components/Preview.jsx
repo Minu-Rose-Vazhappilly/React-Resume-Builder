@@ -18,14 +18,14 @@ function Preview() {
       <Stack direction={'row'} sx={{marginTop:'20px',justifyContent:'flex-end'}}>
         <Stack direction={'row'} sx={{alignItems:'center'}}>
           {/* Download */}
-          <button className='btn fs-1 text-primary' ><FaFileDownload /></button>
+          <button className='btn  text-primary' ><FaFileDownload /></button>
           {/* edit */}
           <div>
             <Edit/>
           </div>
           {/* history */}
-          <Link to={'/history'}><button className='btn fs-1 text-primary' ><FaHistory /></button></Link>
-          <Link to={'/resume'}><button className='btn fs-1 text-primary' >BACK</button></Link>
+          <Link to={'/history'}><button className='btn  text-primary' ><FaHistory /></button></Link>
+          <Link to={'/resume'}><button className='btn text-primary' >BACK</button></Link>
         </Stack>
       </Stack>
       <Box component="section">

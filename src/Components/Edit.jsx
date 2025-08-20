@@ -27,7 +27,7 @@ function Edit() {
     const handleClose = () => setOpen(false);
 
     return (
-        <div><button onClick={handleOpen} className="btn fs-1 text-primary" ><MdEdit /></button>
+        <div><button onClick={handleOpen} className="btn  text-primary" ><MdEdit /></button>
             <Modal
                 open={open}
                 onClose={handleClose}
