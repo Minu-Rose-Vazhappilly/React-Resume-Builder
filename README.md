@@ -4,3 +4,6 @@
  3.Run the react app using command:npm run dev
  4.Installing third party libraries.
     -Material UI : npm install 
+
+
+    state-lifting is used
