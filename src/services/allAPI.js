@@ -6,4 +6,10 @@ export const addResumeAPI = (resume)=>{
     return commonAPI("POST",`${BASEURL}/all-resumes`,resume)
 }
 //editResumeApi
+
 //addHistoryAPI
+export const addDownloadHistoryAPI = (resume)=>{
+    return commonAPI("POST",`${BASEURL}/history`,resume)
+}
+//getHistoryAPI
+//DELETEHistoryAPi

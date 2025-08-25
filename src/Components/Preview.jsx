@@ -8,12 +8,32 @@ import Button from '@mui/material/Button';
 import { FaFileDownload } from "react-icons/fa";
 import { FaHistory } from "react-icons/fa";
 import Edit from './Edit';
+import html2canvas from 'html2canvas';
+import { jsPDF } from "jspdf";
 
 
 
 
-function Preview({userInput}) {
-  console.log(userInput);
+function Preview({userInput,finish}) {
+  // console.log(userInput);
+  const downloadCV = async()=>{
+    //get element for taking screenshot
+    const input = document.getElementById("result")
+    const canvas = await html2canvas(input,{scale:2})
+    const imgURL = canvas.toDataURL('image/png')
+
+    const pdf = new jsPDF()
+    const pdfWidth = pdf.internal.pageSize.getWidth()
+    const pdfHeight = pdf.internal.pageSize.getHeight()
+
+    pdf.addImage(imgURL,'PNG',0,0,pdfWidth,pdfHeight)
+    pdf.save('resume.pdf')
+  
+    //get date
+    const localTimeData =  new Date()
+    const timeStamp = `${localTimeData.toLocaleDateString()},${localTimeData,toLocaleTimeString()}`
+    
+  }
   
   return (
 
@@ -21,10 +41,11 @@ function Preview({userInput}) {
       {
         userInput.personelData.name!="" &&
       <>
+      
         <Stack direction={'row'} sx={{marginTop:'20px',justifyContent:'flex-end'}}>
           <Stack direction={'row'} sx={{alignItems:'center'}}>
             {/* Download */}
-            <button className='btn  text-primary' ><FaFileDownload /></button>
+            <button onClick={downloadCV} className='btn  text-primary' ><FaFileDownload /></button>
             {/* edit */}
             <div>
               <Edit/>
@@ -34,9 +55,10 @@ function Preview({userInput}) {
             <Link to={'/resume'}><button className='btn text-primary' >BACK</button></Link>
           </Stack>
         </Stack>
+        
         <Box component="section">
         
-        <Paper sx={{ my:5,p:5,textAlign:'center'}}>
+        <Paper id="result" sx={{ my:5,p:5,textAlign:'center'}}>
           <h2>{userInput.personelData.name}</h2>
           <h4>{userInput.personelData.jobTitle}</h4>
           <p><span>{userInput.personelData.location}</span> | <span>{userInput.personelData.email}</span> | <span>{userInput.personelData.phone}</span></p>
