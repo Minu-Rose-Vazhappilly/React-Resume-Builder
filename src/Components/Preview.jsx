@@ -10,11 +10,13 @@ import { FaHistory } from "react-icons/fa";
 import Edit from './Edit';
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
+import { addDownloadHistoryAPI } from '../services/allAPI';
 
 
 
 
 function Preview({userInput,finish}) {
+  const [downloadStatus,setDownloadStatus] = React.useState(false)
   // console.log(userInput);
   const downloadCV = async()=>{
     //get element for taking screenshot
@@ -31,7 +33,16 @@ function Preview({userInput,finish}) {
   
     //get date
     const localTimeData =  new Date()
-    const timeStamp = `${localTimeData.toLocaleDateString()},${localTimeData,toLocaleTimeString()}`
+    const timeStamp = `${localTimeData.toLocaleDateString()}, ${localTimeData.toLocaleTimeString()}`
+
+
+    try{
+        const result = await addDownloadHistoryAPI({...userInput,imgURL,timeStamp})
+        setDownloadStatus(true)
+    }catch(err){
+      console.log(err);
+      
+    }
     
   }
   
@@ -40,25 +51,31 @@ function Preview({userInput,finish}) {
     <>
       {
         userInput.personelData.name!="" &&
-      <>
-      
-        <Stack direction={'row'} sx={{marginTop:'20px',justifyContent:'flex-end'}}>
-          <Stack direction={'row'} sx={{alignItems:'center'}}>
+      <div>
+      {
+      finish && 
+        <div className='d-flex justify-content-center align-items-center ' style={{paddingTop:'180px'}}>
+          
             {/* Download */}
             <button onClick={downloadCV} className='btn  text-primary' ><FaFileDownload /></button>
-            {/* edit */}
-            <div>
-              <Edit/>
-            </div>
-            {/* history */}
-            <Link to={'/history'}><button className='btn  text-primary' ><FaHistory /></button></Link>
+            {
+              downloadStatus &&
+            <>
+              {/* edit */}
+              <div>
+                <Edit/>
+              </div>
+              {/* history */}
+              <Link to={'/history'}><button className='btn  text-primary' ><FaHistory /></button></Link>
+            </>
+            }
             <Link to={'/resume'}><button className='btn text-primary' >BACK</button></Link>
-          </Stack>
-        </Stack>
-        
+          
+        </div>
+      }
         <Box component="section">
         
-        <Paper id="result" sx={{ my:5,p:5,textAlign:'center'}}>
+        <Paper id="result" sx={{ my:5,p:5,textAlign:'center',width:'600px',height:'700px',marginTop:'25px'}}>
           <h2>{userInput.personelData.name}</h2>
           <h4>{userInput.personelData.jobTitle}</h4>
           <p><span>{userInput.personelData.location}</span> | <span>{userInput.personelData.email}</span> | <span>{userInput.personelData.phone}</span></p>
@@ -89,7 +106,7 @@ function Preview({userInput,finish}) {
       </Stack>
         </Paper>
       </Box>
-      </>
+      </div>
       }
     </>
   )
