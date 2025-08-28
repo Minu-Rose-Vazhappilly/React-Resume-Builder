@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
@@ -15,9 +15,13 @@ import { addDownloadHistoryAPI } from '../services/allAPI';
 
 
 
-function Preview({userInput,finish}) {
+function Preview({setUserInput,resumeId,userInput,finish}) {
+
+  const [updateResume,setUpdateResume] = useState({})
   const [downloadStatus,setDownloadStatus] = React.useState(false)
   // console.log(userInput);
+  
+
   const downloadCV = async()=>{
     //get element for taking screenshot
     const input = document.getElementById("result")
@@ -46,6 +50,8 @@ function Preview({userInput,finish}) {
     
   }
   
+  
+
   return (
 
     <>
@@ -58,13 +64,12 @@ function Preview({userInput,finish}) {
           
             {/* Download */}
             <button onClick={downloadCV} className='btn  text-primary' ><FaFileDownload /></button>
+            <div>
+                <Edit setUpdateResume={setUpdateResume}  resumeId={resumeId}/>
+              </div>
             {
               downloadStatus &&
-            <>
-              {/* edit */}
-              <div>
-                <Edit/>
-              </div>
+            <>    
               {/* history */}
               <Link to={'/history'}><button className='btn  text-primary' ><FaHistory /></button></Link>
             </>
@@ -75,7 +80,7 @@ function Preview({userInput,finish}) {
       }
         <Box component="section">
         
-        <Paper id="result" sx={{ my:5,p:5,textAlign:'center',width:'600px',height:'700px',marginTop:'25px'}}>
+        <Paper id="result" sx={{ my:5,p:5,textAlign:'center',width:'100%',height:'fit-content',marginTop:'25px',marginBottom:"100px"}}>
           <h2>{userInput.personelData.name}</h2>
           <h4>{userInput.personelData.jobTitle}</h4>
           <p><span>{userInput.personelData.location}</span> | <span>{userInput.personelData.email}</span> | <span>{userInput.personelData.phone}</span></p>

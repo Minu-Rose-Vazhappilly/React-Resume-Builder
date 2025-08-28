@@ -13,7 +13,7 @@ import { addResumeAPI } from '../services/allAPI';
 
 const steps = ['Basic Information', 'Contact Details', 'Education Details','Work EXperience','Skills & Certifications','Review & Submit'];
 
-function Steps({userInput,setUserInput,setFinish}) {
+function Steps({setResumeId,userInput,setUserInput,setFinish}) {
   const skillSuggestionArray = ['NODE JS','EXPRESS','MONGODB','REACT','ANGULAR','NEXT JS','BOOTSTRAP','TAILWIND','CSS','GIT']
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
@@ -90,9 +90,10 @@ function Steps({userInput,setUserInput,setFinish}) {
         <div>
           <h3>Personal Details</h3>
           <div className="d-flex row p-3">
-            <TextField id="standard-basic-name" label="Full Name" variant="standard"  onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,name:e.target.value}})} value={userInput.personelData.name}/>
-            <TextField id="standard-basic-title" label="Job Title" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,jobTitle:e.target.value}})} value={userInput.personelData.jobTitle}/>
-            <TextField id="standard-basic-Location" label="Location" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,location:e.target.value}})} value={userInput.personelData.location}/>
+            <TextField id="standard-basic-name" label="Full Name" variant="standard"  onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,name:e.target.value}})} value={userInput?.personelData?.name}/>
+            <TextField id="standard-basic-title" label="Job Title" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,jobTitle:e.target.value}})} value={userInput?.personelData?.jobTitle}/>
+            <TextField id="standard-basic-Location" label="Location" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,location:e.target.value}})} value={userInput?.personelData?.location}/>
+          
           </div>
         </div>
       )
@@ -110,11 +111,12 @@ function Steps({userInput,setUserInput,setFinish}) {
         <div>
           <h3>Contact Details</h3>
           <div className="d-flex row p-3">
-            <TextField id="standard-basic-mail" label=" Email" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,email:e.target.value}})} value={userInput.personelData.email}/>
-            <TextField id="standard-basic-phone" label="Phone Number" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,phone:e.target.value}})} value={userInput.personelData.phone}/>
-            <TextField id="standard-basic-github" label="GitHub Profile Link" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,github:e.target.value}})} value={userInput.personelData.github}/>
-             <TextField id="standard-basic-linkedin" label="Linkedin Profile Link" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,linkedin:e.target.value}})} value={userInput.personelData.linkedin}/>
-              <TextField id="standard-basic-portfolio" label="Portfolio Link" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,portfolio:e.target.value}})} value={userInput.personelData.portfolio}/>
+            <TextField id="standard-basic-mail" label=" Email" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,email:e.target.value}})} value={userInput?.personelData?.email}/>
+            <TextField id="standard-basic-phone" label="Phone Number" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,phone:e.target.value}})} value={userInput?.personelData?.phone}/>
+            <TextField id="standard-basic-github" label="GitHub Profile Link" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,github:e.target.value}})} value={userInput?.personelData?.github}/>
+             <TextField id="standard-basic-linkedin" label="Linkedin Profile Link" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,linkedin:e.target.value}})} value={userInput?.personelData?.linkedin}/>
+              <TextField id="standard-basic-portfolio" label="Portfolio Link" variant="standard" onChange={e=>setUserInput({...userInput,personelData:{...userInput.personelData,portfolio:e.target.value}})} value={userInput?.personelData?.portfolio}/>
+          
           </div>
         </div>
       )
@@ -122,10 +124,11 @@ function Steps({userInput,setUserInput,setFinish}) {
         <div>
           <h3>Education Details</h3>
           <div className="d-flex row p-3">
-            <TextField id="standard-basic-course" label="Course Name" variant="standard" onChange={e=>setUserInput({...userInput,education:{...userInput.education,course:e.target.value}})} value={userInput.education.course}/>
-            <TextField id="standard-basic-college" label="College" variant="standard" onChange={e=>setUserInput({...userInput,education:{...userInput.education,college:e.target.value}})} value={userInput.education.college}/>
-            <TextField id="standard-basic-University" label="University" variant="standard" onChange={e=>setUserInput({...userInput,education:{...userInput.education,university:e.target.value}})} value={userInput.education.university}/>
-             <TextField id="standard-basic-passout" label="Year of Passout" variant="standard" onChange={e=>setUserInput({...userInput,education:{...userInput.education,year:e.target.value}})} value={userInput.education.year}/>
+            <TextField id="standard-basic-course" label="Course Name" variant="standard" onChange={e=>setUserInput({...userInput,education:{...userInput.education,course:e.target.value}})} value={userInput?.education?.course}/>
+            <TextField id="standard-basic-college" label="College" variant="standard" onChange={e=>setUserInput({...userInput,education:{...userInput.education,college:e.target.value}})} value={userInput?.education?.college}/>
+            <TextField id="standard-basic-University" label="University" variant="standard" onChange={e=>setUserInput({...userInput,education:{...userInput.education,university:e.target.value}})} value={userInput?.education?.university}/>
+            <TextField id="standard-basic-passout" label="Year of Passout" variant="standard" onChange={e=>setUserInput({...userInput,education:{...userInput.education,year:e.target.value}})} value={userInput?.education?.year}/>
+          
           </div>
         </div>
       )
@@ -133,10 +136,11 @@ function Steps({userInput,setUserInput,setFinish}) {
         <div>
           <h3>Professional Details</h3>
           <div className="d-flex row p-3">
-            <TextField id="standard-basic-role" label="Job or Internship" variant="standard" onChange={e=>setUserInput({...userInput,experience:{...userInput.experience,jobRole:e.target.value}})} value={userInput.experience.jobRole}/>
-            <TextField id="standard-basic-Company" label="Company" variant="standard" onChange={e=>setUserInput({...userInput,experience:{...userInput.experience,company:e.target.value}})} value={userInput.experience.company}/>
-            <TextField id="standard-basic-cLocation" label="Location" variant="standard" onChange={e=>setUserInput({...userInput,experience:{...userInput.experience,jobLocation:e.target.value}})} value={userInput.experience.jobLocation}/>
-             <TextField id="standard-basic-duration" label="Duration" variant="standard" onChange={e=>setUserInput({...userInput,experience:{...userInput.experience,duration:e.target.value}})} value={userInput.experience.duration}/>
+            <TextField id="standard-basic-role" label="Job or Internship" variant="standard" onChange={e=>setUserInput({...userInput,experience:{...userInput.experience,jobRole:e.target.value}})} value={userInput?.experience?.jobRole}/>
+            <TextField id="standard-basic-Company" label="Company" variant="standard" onChange={e=>setUserInput({...userInput,experience:{...userInput.experience,company:e.target.value}})} value={userInput?.experience?.company}/>
+            <TextField id="standard-basic-cLocation" label="Location" variant="standard" onChange={e=>setUserInput({...userInput,experience:{...userInput.experience,jobLocation:e.target.value}})} value={userInput?.experience?.jobLocation}/>
+             <TextField id="standard-basic-duration" label="Duration" variant="standard" onChange={e=>setUserInput({...userInput,experience:{...userInput.experience,duration:e.target.value}})} value={userInput?.experience?.duration}/>
+          
           </div>
         </div>
       )
@@ -174,7 +178,7 @@ function Steps({userInput,setUserInput,setFinish}) {
         <div>
           <h3>Professional Summary</h3>
           <div className="d-flex row p-3">
-            <TextField onChange={e=>setUserInput({...userInput,summary:e.target.value})} value={userInput.summary} id="standard-basic-summary" label="Write a short Summmary of yourself" variant="standard" multiline rows={4} defaultValue = {'A highly motivated and results-oriented professional with a strong foundation in [field/domain, e.g., information technology, business management, or engineering]. Possesses excellent problem-solving abilities, strong analytical skills, and the capacity to adapt quickly to dynamic environments. Demonstrates effective communication, teamwork, and leadership qualities, along with a commitment to continuous learning and professional growth. Skilled in leveraging both technical knowledge and interpersonal strengths to deliver efficient, high-quality outcomes. Dedicated to contributing value to organizational objectives while pursuing opportunities for career advancement.'}  />
+            <TextField onChange={e=>setUserInput({...userInput,summary:e.target.value})}  id="standard-basic-summary" label="Write a short Summmary of yourself" variant="standard" multiline rows={4} defaultValue = {'A highly motivated and results-oriented professional with a strong foundation in [field/domain, e.g., information technology, business management, or engineering]. Possesses excellent problem-solving abilities, strong analytical skills, and the capacity to adapt quickly to dynamic environments. Demonstrates effective communication, teamwork, and leadership qualities, along with a commitment to continuous learning and professional growth. Skilled in leveraging both technical knowledge and interpersonal strengths to deliver efficient, high-quality outcomes. Dedicated to contributing value to organizational objectives while pursuing opportunities for career advancement.'}  />
           </div>
         </div>
       )
@@ -189,6 +193,7 @@ function Steps({userInput,setUserInput,setFinish}) {
       try{
         const result = await addResumeAPI(userInput)
         console.log(result);
+        setResumeId(result?.data?.id)
         swal("success!","Resume added successfully!","success");
         setFinish(true)
 

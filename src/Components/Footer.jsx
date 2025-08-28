@@ -7,7 +7,7 @@ import { FaInstagram } from "react-icons/fa6";
 
 function Footer() {
   return (
-    <div style={{height:'400px',backgroundColor:'purple'}} className='d-flex justify-content-center align-items-center flex-column text-light'>
+    <div style={{height:'400px',backgroundColor:'purple',marginTop:"350px"}} className='d-flex justify-content-center align-items-center flex-column text-light'>
       <h1>Contact Us</h1>
     <h4><MdEmail />resumebuilder@gmail.com</h4>
     <h4><FaPhoneAlt />6282693587</h4>

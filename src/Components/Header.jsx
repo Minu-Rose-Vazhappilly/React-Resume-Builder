@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <Box sx={{ flexGrow: 1}}>
+    <Box sx={{ flexGrow: 1,marginBottom:"70px"}}>
       <AppBar position="static" sx={{ backgroundColor: 'purple' }}>
         <Toolbar>
           <IconButton
